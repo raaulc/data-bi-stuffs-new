@@ -289,7 +289,7 @@ export const DATA = {
       links: [
         {
           type: "Website",
-          href: "https://clean-type.vercel.app/",
+          href: "https://www.cleantype.software/",
           icon: <Icons.globe className="size-3" />,
         },
         {
