@@ -54,6 +54,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: 'monthly',
       priority: 0.7,
     },
+    {
+      url: `${baseUrl}/cli`,
+      lastModified: getFileModDate('src/app/cli/page.tsx'),
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
   ];
 
   // Add blog posts to sitemap
