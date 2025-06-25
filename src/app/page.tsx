@@ -21,9 +21,7 @@ import { ProjectSkeleton } from "@/components/skeletons/project-skeleton";
 import { HackathonSkeleton } from "@/components/skeletons/hackathon-skeleton";
 import { BorderBeam } from "@/components/magicui/border-beam";
 import { GhibliSkyBackground } from "@/components/ghibli-elements";
-
 const BLUR_FADE_DELAY = 0.04;
-
 export const metadata: Metadata = {
   title: DATA.name,
   description: DATA.summary,
