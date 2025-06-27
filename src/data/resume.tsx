@@ -130,6 +130,12 @@ export const DATA = {
         icon: Icons.codepen,
         navbar: true,
       },
+      Peerlist: {
+        name: "Peerlist",
+        url: "https://peerlist.io/starknight/signup",
+        icon: Icons.peerlist,
+        navbar: true,
+      },
       buyMeACoffee: {
         name: "buyMeACoffee",
         url: "https://buymeacoffee.com/prasen",
