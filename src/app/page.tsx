@@ -158,6 +158,43 @@ export default function Page() {
           </div>
         </section>
 
+        <section id="contributions">
+          <BlurFade delay={BLUR_FADE_DELAY * 10}>
+            <h2 className="text-xl font-bold">GitHub Contributions</h2>
+            <GithubContributions />
+          </BlurFade>
+        </section>
+
+        <section id="projects">
+          <div className="flex min-h-0 flex-col gap-y-3">
+            <BlurFade delay={BLUR_FADE_DELAY * 7}>
+              <h2 className="text-xl font-bold">Featured Projects</h2>
+            </BlurFade>
+            <BlurFade delay={BLUR_FADE_DELAY * 8}>
+              <div className="grid gap-4 sm:grid-cols-2">
+                {DATA.projects.slice(0, 4).map((project) => (
+                  <div key={project.title} className="relative overflow-hidden rounded-xl">
+                    <ProjectCard
+                      {...project}
+                      tags={Array.from(project.technologies)}
+                    />
+                  </div>
+                ))}
+              </div>
+              <Link
+                href="/projects"
+                className="mt-4 block"
+              >
+                <ShinyButton
+                  className="w-full sm:w-auto group transition-all duration-300 hover:shadow-lg hover:scale-[1.02] active:scale-[0.98] font-semibold"
+                >
+                  View All Projects →
+                </ShinyButton>
+              </Link>
+            </BlurFade>
+          </div>
+        </section>
+
         <section id="blogs">
           <div className="flex min-h-0 flex-col gap-y-3">
             <BlurFade delay={BLUR_FADE_DELAY * 9}>
@@ -196,41 +233,6 @@ export default function Page() {
           </div>
         </section>
 
-        <section id="contributions">
-          <BlurFade delay={BLUR_FADE_DELAY * 10}>
-            <h2 className="text-xl font-bold">GitHub Contributions</h2>
-            <GithubContributions />
-          </BlurFade>
-        </section>
-        <section id="projects">
-          <div className="flex min-h-0 flex-col gap-y-3">
-            <BlurFade delay={BLUR_FADE_DELAY * 7}>
-              <h2 className="text-xl font-bold">Featured Projects</h2>
-            </BlurFade>
-            <BlurFade delay={BLUR_FADE_DELAY * 8}>
-              <div className="grid gap-4 sm:grid-cols-2">
-                {DATA.projects.slice(0, 4).map((project) => (
-                  <div key={project.title} className="relative overflow-hidden rounded-xl">
-                    <ProjectCard
-                      {...project}
-                      tags={Array.from(project.technologies)}
-                    />
-                  </div>
-                ))}
-              </div>
-              <Link
-                href="/projects"
-                className="mt-4 block"
-              >
-                <ShinyButton
-                  className="w-full sm:w-auto group transition-all duration-300 hover:shadow-lg hover:scale-[1.02] active:scale-[0.98] font-semibold"
-                >
-                  View All Projects →
-                </ShinyButton>
-              </Link>
-            </BlurFade>
-          </div>
-        </section>
         <section id="hackathons">
           <div className="space-y-12 w-full py-12">
             <BlurFade delay={BLUR_FADE_DELAY * 13}>
