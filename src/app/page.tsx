@@ -100,7 +100,7 @@ export default function Page() {
                   <Avatar className="size-28 relative z-10">
                     <AvatarImage
                       alt={DATA.name}
-                      src={DATA.avatarUrl}
+                      src="/favicons/profile-pic.jpeg"
                       width={112}
                       height={112}
                       loading="eager"
@@ -202,22 +202,17 @@ export default function Page() {
             </BlurFade>
             <BlurFade delay={BLUR_FADE_DELAY * 10}>
               <div className="flex flex-col space-y-4">
-                <BlogCard
-                  post={{
-                    title: "Is Computer Science Saturated?",
-                    publishedAt: "2024-06-18",
-                    summary: "Blogs are preparing to launch. Stay tuned!",
-                    slug: "hello-world"
-                  }}
-                />
-                <BlogCard
-                  post={{
-                    title: "How to use Cursor AI IDE pro for Free ?",
-                    publishedAt: "2025-04-09",
-                    summary: "A comprehensive guide explaining how to use Cursor for free",
-                    slug: "cursor-free"
-                  }}
-                />
+                {DATA.blogs.map((blog, idx) => (
+                  <BlogCard
+                    key={blog.title}
+                    post={{
+                      title: blog.title,
+                      publishedAt: blog.date,
+                      summary: blog.summary,
+                      slug: blog.title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "")
+                    }}
+                  />
+                ))}
                 <Link
                   href="/blog"
                   className="mt-4 block"
@@ -233,43 +228,51 @@ export default function Page() {
           </div>
         </section>
 
-        <section id="hackathons">
-          <div className="space-y-12 w-full py-12">
-            <BlurFade delay={BLUR_FADE_DELAY * 13}>
-              <div className="flex flex-col items-center justify-center space-y-4 text-center">
-                <div className="space-y-2">
-                  <div className="inline-block rounded-lg bg-foreground text-background px-3 py-1 text-sm">
-                    Hackathons
-                  </div>
-                  <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
-                    I like building things
-                  </h2>
-                  <p className="text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                    During my college years, I participated in some hackathons.
-                  </p>
-                </div>
+        <section id="youtube">
+          <div className="flex min-h-0 flex-col gap-y-3">
+            <BlurFade delay={BLUR_FADE_DELAY * 11}>
+              <h2 className="text-xl font-bold">YouTube</h2>
+            </BlurFade>
+            <BlurFade delay={BLUR_FADE_DELAY * 12}>
+              <div className="flex flex-col space-y-4">
+                {DATA.youtube && DATA.youtube.map((video, idx) => (
+                  <a
+                    key={video.url}
+                    href={video.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-4 p-4 rounded-lg border hover:bg-muted transition"
+                  >
+                    <img
+                      src={video.thumbnail}
+                      alt={video.title}
+                      className="w-24 h-16 object-cover rounded"
+                    />
+                    <div>
+                      <div className="font-semibold">{video.title}</div>
+                      <div className="text-sm text-muted-foreground">{video.description}</div>
+                      <div className="text-xs text-muted-foreground mt-1">{video.date}</div>
+                    </div>
+                  </a>
+                ))}
               </div>
             </BlurFade>
-            <BlurFade delay={BLUR_FADE_DELAY * 14}>
-              <ul className="mb-4 ml-4 divide-y divide-dashed border-l">
-                {DATA.hackathons.map((project, id) => (
-                  <BlurFade
-                    key={project.title + project.dates}
-                    delay={BLUR_FADE_DELAY * 15 + id * 0.05}
-                  >
-                    <HackathonCardDynamic
-                      title={project.title}
-                      description={project.description}
-                      location={project.location}
-                      dates={project.dates}
-                      image={project.image}
-                      links={project.links}
-                    />
-                  </BlurFade>
-                ))}
-              </ul>
-            </BlurFade>
           </div>
+        </section>
+
+        <section id="likes-building">
+          <BlurFade delay={BLUR_FADE_DELAY * 13}>
+            <div className="flex flex-col items-center justify-center space-y-4 text-center">
+              <div className="space-y-2">
+                <div className="inline-block rounded-lg bg-foreground text-background px-3 py-1 text-sm">
+                  About My Work
+                </div>
+                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
+                  {DATA.likesBuilding}
+                </h2>
+              </div>
+            </div>
+          </BlurFade>
         </section>
         <section id="education">
           <div className="flex min-h-0 flex-col gap-y-3">
@@ -295,47 +298,6 @@ export default function Page() {
           </div>
         </section>
 
-        <section id="videos">
-          <BlurFade delay={BLUR_FADE_DELAY * 10}>
-            <div className="space-y-4">
-              <h2 className="text-xl font-bold">Recent Videos</h2>
-              <div className="grid gap-6 sm:grid-cols-2">
-                {DATA.videos.slice(-2).map((video, idx) => (
-                  <BlurFade key={video.url} delay={BLUR_FADE_DELAY * 11 + idx * 0.05}>
-                    <div className="relative overflow-hidden rounded-xl">
-                      <BorderBeam
-                        size={50}
-                        duration={4}
-                        colorFrom="#ffaa40"
-                        colorTo="#9c40ff"
-                        className="from-transparent via-foreground/20 to-transparent"
-                        transition={{
-                          type: "spring",
-                          stiffness: 60,
-                          damping: 20,
-                        }}
-                      />
-                      <VideoCard video={video} />
-                    </div>
-                  </BlurFade>
-                ))}
-                <BlurFade delay={BLUR_FADE_DELAY * 12}>
-                  <Link
-                    href="/videos"
-                    className="mt-4 block"
-                  >
-                    <RainbowButton
-                      className="w-full sm:w-[160px] px-4 py-2 group transition-all duration-300 hover:shadow-lg hover:scale-[1.02] active:scale-[0.98] font-bold text-center"
-                    >
-                      All Videos →
-                    </RainbowButton>
-                  </Link>
-                </BlurFade>
-              </div>
-            </div>
-          </BlurFade>
-        </section>
-
         <section id="contact">
           <BlurFade delay={BLUR_FADE_DELAY * 16}>
             <div className="space-y-4">
@@ -347,22 +309,16 @@ export default function Page() {
               
               <div className="mt-6 space-y-4">
                 <a
-                  href="mailto:prasen.nayak@hotmail.com"
+                  href={`mailto:${DATA.contactDetails.email}`}
                   className="flex items-center gap-2 underline underline-offset-4 hover:opacity-70 transition-opacity"
                 >
                   <Icons.email className="size-4" />
-                  prasen.nayak@hotmail.com
+                  {DATA.contactDetails.email}
                 </a>
-
-                <a
-                  href={DATA.contact.social.X.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-foreground text-background hover:opacity-90 transition-opacity"
-                >
-                  <DATA.contact.social.X.icon className="size-4" />
-                  Connect on X
-                </a>
+                <div className="flex items-center gap-2">
+                  <span className="font-semibold">Phone:</span>
+                  <span>{DATA.contactDetails.tel}</span>
+                </div>
               </div>
             </div>
           </BlurFade>
