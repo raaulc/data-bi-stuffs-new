@@ -35,7 +35,7 @@ export default function VideosPage() {
         </BlurFade>
         
         <div className="grid gap-6 sm:grid-cols-2">
-          {DATA.videos.map((video, idx) => (
+          {DATA.youtube.map((video, idx) => (
             <BlurFade key={video.url} delay={BLUR_FADE_DELAY * (idx + 2)}>
               <VideoCard video={video} />
             </BlurFade>
