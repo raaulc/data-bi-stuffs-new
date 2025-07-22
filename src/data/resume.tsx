@@ -278,7 +278,7 @@ export const DATA = {
   likesBuilding: "I like building scalable analytics solutions, intuitive dashboards, and tools that turn raw data into business value.",
   contactDetails: {
     email: "raaulc@outlook.com",
-    tel: "+44-7424399000"
+    tel: "+44-7424939000"
   },
   youtube: [
     {
