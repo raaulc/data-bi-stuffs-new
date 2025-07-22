@@ -158,7 +158,7 @@ export const DATA = {
       href: "https://www.ddu.ac.in/",
       degree: "Bachelor of Engineering: Electronics and Communication",
       logoUrl: "",
-      start: "05/2009",
+      start: "05/2005",
       end: "05/2009",
       location: "Gujarat, India"
     }
